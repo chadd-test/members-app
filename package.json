@@ -1,0 +1,18 @@
+{
+  "name": "members-app",
+  "version": "1.0.0",
+  "description": "practice with ExpressJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "Chadd Rivera",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
