@@ -16,12 +16,10 @@ const PORT = process.env.PORT || 5000;
 // Set a static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/members', require('./routes/members'));
-
-
+// API Route File
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
+app.use('/api/members', require('./routes/members'));
 
 // start Express Server
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
