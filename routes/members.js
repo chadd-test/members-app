@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 
       if(!newMember.name || !newMember.email) {
         return res.status(400).json({msg: 'Please include a name and email'});
-    }; 
+    } 
 
     members.push(newMember);
     
@@ -40,7 +40,7 @@ router.get('/:id', (req, res) => {
 res.json(members.filter(member => member.id === Number(req.params.id)));
     } else {
 res.status(400).json({msg: `No member with the ID of ${req.params.id}`});
-    };
+    }
 
 });
 
@@ -67,14 +67,35 @@ router.put('/:id', (req, res) => {
         });
     } else {
 res.status(400).json({msg: `No member with the ID of ${req.params.id}`});
-    };
+    }
 
 });
 
 
 
 // Delete Single Member - DEL Request
+router.delete('/:id', (req, res) => {
+    const found = members.some(member => member.id === Number(req.params.id));
+    if (found) {
+        let memberIndex = undefined;
+        let memberName = undefined;    
 
+        members.map((member,index) => {
+            if (member.id === Number(req.params.id)) {
+                memberIndex = index;
+                memberName = member.name;
+            } else {
+                console.log('Something went wrong');    
+                return null;
+            }
+        });
+
+        members.splice(memberIndex, 1);
+        res.json({msg: `Successfully deleted ${memberName}`, members});
+    } else {
+res.status(400).json({msg: `No member with the ID of ${req.params.id}`});
+    }
+});
 
 
 
